@@ -2026,17 +2026,20 @@ applink.forEach(v => {
 // 'https://mmbiz.qpic.cn/mmbiz_png/zvwPyGyaqfGum6DMYp04iaL6WwVVKssJpvOTmco6W5nbgQZjsIoxsPD5XUiatz83wpibBM34lrQwPhAUewagzaic3A/640?wx_fmt=gif'
 // 'https://www.sbxx.top/static-no-cache/test/zero/img.jpg'
 // 远程图片会报错：Failed to execute 'toDataURL' on 'HTMLCanvasElement': Tainted canvases may not be exported.
-// 解决方案步骤1：html2canvas设置第二参数：```{useCORS: true}```。
-// 解决方案步骤2：给img标签增加```crossorigin="anonymous"```属性。
-// mergeImages包没提供可修复这种问题的参数。
+// 解决方案前置条件：`图片允许跨域`。
+// 解决方案步骤2 - 使用html解决：给img标签增加`crossorigin="anonymous"`属性。
+// 解决方案步骤2 - 使用js解决：`img.setAttribute('crossOrigin', 'Anonymous')`。注：要加到`img.src = '/xxx.png'`前面。
+// mergeImages包没提供可修复这种问题的参数。所以我改了源码。在32行加入了`img.setAttribute('crossOrigin', 'Anonymous')`。
 mergeImages([
-  { src: '/images/1.jpg', x: 0, y: 0 },
-  { src: '/images/2.jpg', x: 100, y: 100 }
-], {
-  images: {
-    crossorigin: 'anonymous'
-  }
-}).then(b64 => {
+  // { src: '/images/1.jpg', x: 0, y: 0 },
+  // { src: '/images/2.jpg', x: 100, y: 100 }
+  {
+    src: 'https://cdqn.icaodong.com/image/100_1567675626898_160767275.jpg',
+    x: 0,
+    y: 0
+  },
+  { src: 'http://cdqn.icaodong.com/100_1555572232257_785803872_2.jpg', x: 0, y: 0 }
+]).then(b64 => {
   const newDom = document.createElement('img')
   newDom.src = b64
   document.body.appendChild(newDom)
