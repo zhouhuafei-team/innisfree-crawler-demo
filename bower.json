@@ -1,0 +1,21 @@
+{
+  "name": "innisfree-crawler-demo",
+  "description": "",
+  "main": "",
+  "authors": [
+    "zhouhuafei <1123486116@qq.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "static/bower_components/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "js-url": "^2.5.3"
+  }
+}

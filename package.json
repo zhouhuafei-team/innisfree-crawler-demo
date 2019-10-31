@@ -1,0 +1,16 @@
+{
+  "name": "innisfree-crawler-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "mp.js",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "crawler": "^1.2.1",
+    "koa": "^2.11.0",
+    "koa-body": "^4.1.1",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0"
+  }
+}
