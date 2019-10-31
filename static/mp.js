@@ -1989,6 +1989,11 @@ img.forEach(v => {
 // 找小程序相关的商品链接
 const applink = document.querySelectorAll('.weapp_image_link')
 applink.forEach(v => {
+  // 新的节点替换a，防止长按识别不了。
+  const newV = document.createElement('div')
+  newV.setAttribute('style', 'display:block;position:relative;')
+  newV.innerHTML = v.innerHTML
+  // 获取属性。
   const img = v.querySelector('img')
   console.log(img.dataset.src)
   console.log(v.dataset.miniprogramType) // image
@@ -2017,9 +2022,15 @@ applink.forEach(v => {
     url: 'http://cd-dev-wmp.amorepacific.com.cn/miniapp/procuct/qrcode/external',
     params
   }).then(res => {
+    // 得到二维码。
     const newDom = document.createElement('img')
+    newDom.setAttribute('style', 'width:80px;height:80px;position:absolute;right:10px;bottom:10px;border-radius:50%;')
     newDom.src = res.data.data
-    v.insertBefore(newDom, v.children[0])
+    // 置入新的节点
+    newV.insertBefore(newDom, newV.children[0])
+    // 用新的节点替换老的节点。
+    v.parentNode.insertBefore(newV, v)
+    v.parentNode.removeChild(v)
   })
 })
 
@@ -2038,7 +2049,7 @@ mergeImages([
     x: 0,
     y: 0
   },
-  { src: 'http://cdqn.icaodong.com/100_1555572232257_785803872_2.jpg', x: 0, y: 0 }
+  { src: 'http://cdqn.icaodong.com/100_1555572232257_785803872_2.jpg', x: 0, y: 0, opacity: 0.9 }
 ]).then(b64 => {
   const newDom = document.createElement('img')
   newDom.src = b64
