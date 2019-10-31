@@ -2023,9 +2023,12 @@ applink.forEach(v => {
     params
   }).then(res => {
     // 得到二维码。
-    const newDom = document.createElement('img')
-    newDom.setAttribute('style', 'width:80px;height:80px;position:absolute;right:10px;bottom:10px;border-radius:50%;')
-    newDom.src = res.data.data
+    const newDom = document.createElement('div')
+    newDom.setAttribute('style', 'position:absolute;right:10px;bottom:10px;')
+    newDom.innerHTML = `
+      <img src="${res.data.data}" style="width:80px;height:80px;">
+      <div style="font-size: 12px; text-align: center;margin-top: 5px;line-height: 1.2;">长按二维码识别</div>
+    `
     // 置入新的节点
     newV.insertBefore(newDom, newV.children[0])
     // 用新的节点替换老的节点。
@@ -2041,20 +2044,20 @@ applink.forEach(v => {
 // 解决方案步骤2 - 使用html解决：给img标签增加`crossorigin="anonymous"`属性。
 // 解决方案步骤2 - 使用js解决：`img.setAttribute('crossOrigin', 'Anonymous')`。注：要加到`img.src = '/xxx.png'`前面。
 // mergeImages包没提供可修复这种问题的参数。所以我改了源码。在32行加入了`img.setAttribute('crossOrigin', 'Anonymous')`。
-mergeImages([
-  // { src: '/images/1.jpg', x: 0, y: 0 },
-  // { src: '/images/2.jpg', x: 100, y: 100 }
-  {
-    src: 'https://cdqn.icaodong.com/image/100_1567675626898_160767275.jpg',
-    x: 0,
-    y: 0
-  },
-  { src: 'http://cdqn.icaodong.com/100_1555572232257_785803872_2.jpg', x: 0, y: 0, opacity: 0.9 }
-]).then(b64 => {
-  const newDom = document.createElement('img')
-  newDom.src = b64
-  document.body.appendChild(newDom)
-})
+// mergeImages([
+//   // { src: '/images/1.jpg', x: 0, y: 0 },
+//   // { src: '/images/2.jpg', x: 100, y: 100 }
+//   {
+//     src: 'https://cdqn.icaodong.com/image/100_1567675626898_160767275.jpg',
+//     x: 0,
+//     y: 0
+//   },
+//   { src: 'http://cdqn.icaodong.com/100_1555572232257_785803872_2.jpg', x: 0, y: 0, opacity: 0.9 }
+// ]).then(b64 => {
+//   const newDom = document.createElement('img')
+//   newDom.src = b64
+//   document.body.appendChild(newDom)
+// })
 
 /*
 pages/item/espier-detail 商品页面
