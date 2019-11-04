@@ -2045,16 +2045,15 @@ applink.forEach(v => {
     queryArr.push(`${key}=${params[key]}`)
   })
   const newDom = document.createElement('div')
-  newDom.setAttribute('style', 'position:absolute;right:10px;bottom:10px;')
+  newDom.setAttribute('style', 'display:flex; align-item:center;align-items: center;flex-flow: row-reverse;background:#fff;padding:0 10px;')
   newDom.innerHTML = `
     <img src="http://cd-dev-wmp.amorepacific.com.cn/miniapp/procuct/qrcode/external?${queryArr.join('&')}" style="width:80px;height:80px;">
-    <div style="font-size: 12px; text-align: center;margin-top: 5px;line-height: 1.2;">长按二维码识别</div>
+    <div style="font-size: 12px; text-align: center;margin-top: 5px;line-height: 1.2; padding: 0 10px;">长按二维码识别</div>
   `
   // 置入新的节点
   newV.insertBefore(newDom, newV.children[0])
   // 用新的节点替换老的节点。
-  v.parentNode.insertBefore(newV, v)
-  v.parentNode.removeChild(v)
+  v.parentNode.appendChild(newV)
 })
 
 // 'https://mmbiz.qpic.cn/mmbiz_png/zvwPyGyaqfGum6DMYp04iaL6WwVVKssJpvOTmco6W5nbgQZjsIoxsPD5XUiatz83wpibBM34lrQwPhAUewagzaic3A/640?wx_fmt=gif'
