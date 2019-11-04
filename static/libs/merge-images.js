@@ -69,3 +69,5 @@ const mergeImages = (sources = [], options = {}) => new Promise(resolve => {
       return canvas.toDataURL(options.format, options.quality)
     }))
 })
+
+export default mergeImages

@@ -1,3 +1,6 @@
+import url from './libs/url.js'
+import mergeImages from './libs/merge-images.js'
+
 let str = `
 <!DOCTYPE html>
 <html>
