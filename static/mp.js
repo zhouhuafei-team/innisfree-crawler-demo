@@ -2045,7 +2045,7 @@ applink.forEach(v => {
     queryArr.push(`${key}=${params[key]}`)
   })
   const newDom = document.createElement('div')
-  newDom.setAttribute('style', 'display:flex; align-item:center;align-items: center;flex-flow: row-reverse;background:#fff;padding:0 10px;')
+  newDom.setAttribute('style', 'display:flex;align-items:center;flex-flow:row-reverse;background:#fff;padding:0 10px;')
   newDom.innerHTML = `
     <img src="http://cd-dev-wmp.amorepacific.com.cn/miniapp/procuct/qrcode/external?${queryArr.join('&')}" style="width:80px;height:80px;">
     <div style="font-size: 12px; text-align: center;margin-top: 5px;line-height: 1.2; padding: 0 10px;">长按二维码识别</div>
