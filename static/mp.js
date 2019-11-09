@@ -2004,7 +2004,7 @@ applink.forEach(v => {
   console.log(v.dataset.miniprogramPath) // pages/item/espier-detail?id=293&utm_source=officialaccount&utm_medium=1021presale&utm_content=mascara
   const query = url('?', v.dataset.miniprogramPath)
   const path = url('path', `/${v.dataset.miniprogramPath}`)
-  if (path === '/pages/item/espier-detail' || path === '/pages/index/index') {
+  if (path === '/pages/item/espier-detail' || path === '/pages/index/index' || path === '/pages/index') {
     console.log('path', path)
     console.log('query', query)
     console.log('↑---------------------------------------↑')
@@ -2013,7 +2013,8 @@ applink.forEach(v => {
     width: 500,
     empId: 12241
   }
-  if (path === '/pages/index/index') { // 首页
+  if (path === '/pages/index/index' || path === '/pages/index') { // 首页
+    params.pathType = 'index'
   } else if (path === '/pages/item/espier-detail') { // 商详页
     params.pathType = 'goods_detail'
     params.productId = query.id
